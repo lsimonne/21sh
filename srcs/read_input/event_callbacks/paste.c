@@ -1,9 +1,18 @@
-# include "event_callback_def.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void restore_old_cursor_position(t_editor *ed, t_vec2i old_pos);
-void		print_cursor_vector(t_editor *ed);
+#include "event_callback_def.h"
 
-EV_CB_RET	event_paste(EV_CB_ARGS)
+EV_CB_RET	ev_paste(t_editor *ed)
 {
 	size_t i;
 

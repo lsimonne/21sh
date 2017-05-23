@@ -1,4 +1,16 @@
-PROG_NAME	= 42sh
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#              #
+#    Updated: 2017/05/04 15:35:21 by lsimonne       ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+PROG_NAME	= 21sh
 
 COMPILER	= clang -c
 CFLAGS 		= -Wall -Wextra -Werror -g -I$(INCL_ROOT) -I./libft/includes/
@@ -64,5 +76,8 @@ fclean: clean
 	@rm -f $(PROG_NAME)
 
 re: fclean all
+
+norme:
+	zsh -c "while ((1)) {sleep 1 && norminette **/*.[ch] | grep -v header > norm && clear && cat norm}"
 
 .PHONY: all clean fclean re test testsh

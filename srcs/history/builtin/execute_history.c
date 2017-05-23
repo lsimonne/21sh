@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "history.h"
 #include "history/substitution/history_substitutions.h"
 #include "abstract_list.h"
@@ -47,7 +59,7 @@ static void		file_manipulation(t_hist_opt options, t_history *history)
 	if (options.args)
 		filename = options.args[0];
 	else
-		filename = HISTFILE;
+		filename = get_shell_env()->history.histfile;
 	if (options.anrw & W_OPT || options.anrw & A_OPT)
 	{
 		if (options.anrw & W_OPT)

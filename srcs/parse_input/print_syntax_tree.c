@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "syntax_tree.h"
 #include "utils.h"
 #include <libft.h>
 
-static void 	print_assignments(t_variable const *a, size_t lvl)
+static void		print_assignments(t_variable const *a, size_t lvl)
 {
 	if (a == NULL)
 		return ;
@@ -21,7 +33,7 @@ static void 	print_assignments(t_variable const *a, size_t lvl)
 	ft_putchar('\n');
 }
 
-static void 	print_redirections(t_redirection const *r, size_t lvl)
+static void		print_redirections(t_redirection const *r, size_t lvl)
 {
 	if (r == NULL)
 		return ;
@@ -42,7 +54,7 @@ static void 	print_redirections(t_redirection const *r, size_t lvl)
 	ft_putchar('\n');
 }
 
-static void	print_simple_command(t_simple_command const *cmd, size_t lvl)
+static void		print_simple_command(t_simple_command const *cmd, size_t lvl)
 {
 	char **it;
 
@@ -60,7 +72,7 @@ static void	print_simple_command(t_simple_command const *cmd, size_t lvl)
 			{
 				if (it != cmd->argv + 1)
 					ft_putchar(' ');
-				print_non_ascii_str(*it);
+				ft_putendl(*it);
 				it++;
 			}
 			ft_putchar('\n');
@@ -70,7 +82,7 @@ static void	print_simple_command(t_simple_command const *cmd, size_t lvl)
 	print_redirections(cmd->redirections, lvl);
 }
 
-void		print_pipeline(t_simple_command const *pip, size_t lvl)
+void			print_pipeline(t_simple_command const *pip, size_t lvl)
 {
 	if (pip == NULL)
 	{

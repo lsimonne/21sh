@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ABSTRACT_LIST_H
 # define ABSTRACT_LIST_H
 # include <stdlib.h>
@@ -24,6 +36,7 @@ t_abstract_list				*list_dup_until(t_abstract_list const *list
 						, t_abstract_list const *stop, size_t elem_size);
 bool						list_goto_n(t_abstract_list **list, t_uint n);
 void						list_concat(t_abstract_list	**dst
-														, t_abstract_list *src);
+													, t_abstract_list *src);
+void						list_free(t_abstract_list **list);
 
 #endif

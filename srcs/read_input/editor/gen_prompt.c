@@ -1,26 +1,31 @@
-# include <libft.h>
-# include <term.h>
-# include <termios.h>
-# include <curses.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "utils.h"
-# include "abstract_list.h"
-# include "shell_env.h"
+#include <libft.h>
+#include <term.h>
+#include <termios.h>
+#include <curses.h>
 
-# include "read_input/editor/editor.h"
-# include "read_input/event_callbacks/event_callback_def.h"
-# include "read_input/termcap/init_deinit.h"
+#include "utils.h"
+#include "abstract_list.h"
+#include "shell_env.h"
 
-// #include "history/history.h"
+#include "read_input/editor/editor.h"
+#include "read_input/editor/editor_struct.h"
+#include "read_input/event_callbacks/event_callback_def.h"
+#include "read_input/termcap/init_deinit.h"
 
 #include "variable.h"
 #include <sys/utsname.h>
-
-typedef struct		s_unmatched_def
-{
-	t_error_id	id;
-	char const	*str;
-}					t_unmatched_def;
 
 static char const	*get_unmatched_str(t_error_id id)
 {
@@ -43,9 +48,9 @@ static char const	*get_unmatched_str(t_error_id id)
 	return ("unknown");
 }
 
-static char			*get_hostname()
+static char			*get_hostname(void)
 {
-	struct utsname  machine;
+	struct utsname	machine;
 
 	if (uname(&machine) < 0)
 		return (ft_strdup(""));
@@ -66,7 +71,7 @@ static char			*mangle_home(char *str)
 		return (str);
 	result = ft_strjoin("~", result + home_str_len);
 	free(str);
-		return(result);
+	return (result);
 }
 
 char				*gen_prompt(void)
@@ -87,7 +92,6 @@ char				*gen_prompt(void)
 		result = ft_strjoinf(tmp, result, 3);
 	}
 	else
-	 	result = ft_strjoin(get_unmatched_str(shell_env->last_unmatched), "> ");
-
+		result = ft_strjoin(get_unmatched_str(shell_env->last_unmatched), "> ");
 	return (result);
 }

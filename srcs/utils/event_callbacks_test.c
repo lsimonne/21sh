@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <termios.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -15,7 +27,7 @@ static void	termios_init(void)
 		ft_putendl_fd("42sh: stdout is not a tty", STDERR_FILENO);
 	if (tcgetattr(STDOUT_FILENO, &term) != 0)
 		ft_putendl_fd("42sh: tcgetattr failed", STDERR_FILENO);
-	term.c_lflag &= ~(ICANON | ECHO/* | ISIG*/);
+	term.c_lflag &= ~(ICANON | ECHO);
 	term.c_cc[VMIN] = 1;
 	term.c_cc[VTIME] = 0;
 	if (tcsetattr(STDOUT_FILENO, 0, &term) == -1)
@@ -35,7 +47,7 @@ void		event_callback_test(void)
 	{
 		buf[ret] = '\0';
 		ft_putstr("buf:\"");
-		print_non_ascii_str(buf);
+		ft_putendl(buf);
 		ft_putendl("\"");
 		def = get_matching_event_callback(buf);
 		print_event_callback_def(def);

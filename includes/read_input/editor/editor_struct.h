@@ -1,9 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef EDITOR_STRUCT_H
 # define EDITOR_STRUCT_H
 
 # include "shell_env.h"
 # include <stdbool.h>
 # include "vec2i.h"
+
+typedef struct			s_unmatched_def
+{
+	t_error_id			id;
+	char const			*str;
+}						t_unmatched_def;
 
 typedef struct			s_string
 {

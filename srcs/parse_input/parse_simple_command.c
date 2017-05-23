@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse_syntax_tree.h"
 #include "abstract_list.h"
 #include "utils.h"
@@ -34,6 +46,7 @@ t_simple_command	*parse_simple_command(t_token const *tokens)
 	if (tokens == NULL)
 		return (NULL);
 	result = memalloc_or_die(sizeof(t_simple_command));
+	remains = NULL;
 	result->redirections = parse_redirections(tokens, &remains);
 	if (get_error() == NO_ERROR)
 	{
@@ -44,6 +57,6 @@ t_simple_command	*parse_simple_command(t_token const *tokens)
 	}
 	delete_all_tokens(&remains);
 	if (get_error() != NO_ERROR)
-		result = NULL; // delete_simple_command(&result);
+		result = NULL;
 	return (result);
 }

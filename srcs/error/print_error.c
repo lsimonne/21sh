@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "errors.h"
 #include "libft.h"
 #include "uint.h"
@@ -7,7 +19,7 @@
 t_builtin_usage const	*get_builtin_usages(void)
 {
 	static t_builtin_usage const usages[BUILTIN_DEF_COUNT] =
-	{{ HISTORY_BUID, "history [-c] [-d offset] [n] or history -awrn [filename] or history -ps arg [arg…]"}
+	{{ HISTORY_BUID, "history [-cd n], history -awrn [file], history -ps arg"}
 	};
 
 	return (usages);

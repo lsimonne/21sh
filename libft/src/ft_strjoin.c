@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pilespin <pilespin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/16 15:16:40 by pilespin          #+#    #+#             */
-/*   Updated: 2016/02/21 00:07:08 by pilespin         ###   ########.fr       */
+/*   Created: 2014/11/16 15:16:40 by lsimonne          #+#    #+#             */
+/*   Updated: 2016/02/21 00:07:08 by lsimonne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	if ((ft_strlen(s1) + ft_strlen(s2)) < 1)
 		return (NULL);
-	res = (char *)memalloc_or_die((sizeof(char)) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	res = memalloc_or_die((sizeof(char)) *
+		(ft_strlen(s1) + ft_strlen(s2) + 1));
 	i = -1;
 	j = 0;
 	if (s1)

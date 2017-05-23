@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "event_callback_def.h"
 #include <libft.h>
 
@@ -48,7 +60,7 @@ static size_t	get_previous_word(t_editor *ed)
 	return (pos);
 }
 
-EV_CB_RET 	event_cursor_word_right(EV_CB_ARGS)
+EV_CB_RET		ev_wrd_r(t_editor *ed)
 {
 	t_vec2i pos;
 
@@ -59,7 +71,7 @@ EV_CB_RET 	event_cursor_word_right(EV_CB_ARGS)
 	ed->pos = get_cursor_vector(ed);
 }
 
-EV_CB_RET 	event_cursor_word_left(EV_CB_ARGS)
+EV_CB_RET		ev_wrd_l(t_editor *ed)
 {
 	t_vec2i pos;
 

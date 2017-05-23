@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipe.h"
 #include <sys/wait.h>
 #include <errno.h>
@@ -25,23 +37,8 @@ void				overwrite_fd(int src, int overwrited)
 	}
 }
 
-int					pipe_me_in(t_pipeline_state *state)
+static void			pipe_me_in_2(t_pipeline_state *state, pid_t fork_ret)
 {
-	pid_t	fork_ret;
-
-	if (state == NULL)
-	{
-		ft_putendl_fd("42sh: fed null ptr(s) to pipe_me_in", 2);
-		exit(EXIT_FAILURE);
-	}
-	if (state->next_pipe != NULL)
-	{
-		ft_putendl_fd("42sh: state->next_pipe set while entering pipe_me_in", 2);
-		exit(EXIT_FAILURE);
-	}
-	if (!state->last_cmd)
-		create_next_pipe(state);
-	fork_ret = enter_subshell();
 	if (fork_ret == FORKED_IN_CHILD)
 	{
 		if (state->prev_pipe != NULL)
@@ -57,5 +54,25 @@ int					pipe_me_in(t_pipeline_state *state)
 		state->next_pipe = NULL;
 		state->last_pid = fork_ret;
 	}
+}
+
+int					pipe_me_in(t_pipeline_state *state)
+{
+	pid_t	fork_ret;
+
+	if (state == NULL)
+	{
+		ft_putendl_fd("42sh: fed null ptr(s) to pipe_me_in", 2);
+		exit(EXIT_FAILURE);
+	}
+	if (state->next_pipe != NULL)
+	{
+		ft_putendl_fd("42sh: state->next_pipe in pipe_me_in", 2);
+		exit(EXIT_FAILURE);
+	}
+	if (!state->last_cmd)
+		create_next_pipe(state);
+	fork_ret = enter_subshell();
+	pipe_me_in_2(state, fork_ret);
 	return (fork_ret);
 }

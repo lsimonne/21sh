@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdbool.h>
 #include "libft.h"
 #include "utils.h"
@@ -21,6 +33,22 @@ bool	check_only_allowed_option(char *option, char *allowed)
 	return (true);
 }
 
+bool	get_options_loop(char **av, char **arg, int i, int j)
+{
+	if (ft_isalnum(av[i][j]))
+	{
+		if (!ft_strchr(*arg, av[i][j]))
+			*arg = ft_strjoinf(*arg, ft_strndup(&av[i][j], 1), 3);
+	}
+	else
+	{
+		free(*arg);
+		ft_dprintf(2, "Bad argument: %s\n", &av[i][1]);
+		return (1);
+	}
+	return (0);
+}
+
 char	*get_options_core(int ac, char **av)
 {
 	char	*arg;
@@ -40,17 +68,8 @@ char	*get_options_core(int ac, char **av)
 			j = 0;
 			while (av[i][++j])
 			{
-				if (ft_isalnum(av[i][j]))
-				{
-					if (!ft_strchr(arg, av[i][j]))
-						arg = ft_strjoinf(arg, ft_strndup(&av[i][j], 1), 3);
-				}
-				else
-				{
-					free(arg);
-					ft_dprintf(2, "Bad argument: %s\n", &av[i][1]);
-					return ((char*)-1);
-				}
+				if (get_options_loop(av, &arg, i, j))
+					return ((char *)-1);
 			}
 		}
 	}

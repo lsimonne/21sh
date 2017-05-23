@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 #include "token.h"
 #include <libft.h>
 #include "break_input/lexer.h"
 #include "abstract_list.h"
 
-t_token	*construct_token(char const *str, char delim)
+t_token		*construct_token(char const *str, char delim)
 {
 	t_token	*token;
 
@@ -57,5 +69,5 @@ void		delete_tokens_array(t_token **tokens_array, size_t len)
 		len--;
 		delete_all_tokens(tokens_array + len);
 	}
-	free (tokens_array);
+	free(tokens_array);
 }

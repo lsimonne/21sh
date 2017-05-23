@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "quoting.h"
 #include <libft.h>
 #include "errors.h"
 #include "shell_env.h"
 
-static char const *find_simple_quote_end(t_tokenizer_state *state)
+static char const	*find_simple_quote_end(t_tokenizer_state *state)
 {
 	char const *it;
 
@@ -20,7 +32,7 @@ static char const *find_simple_quote_end(t_tokenizer_state *state)
 	return (NULL);
 }
 
-void			apply_quoting(t_tokenizer_state *state)
+void				apply_quoting(t_tokenizer_state *state)
 {
 	if (*state->current_char == '\\')
 		state->last_backslash = state->current_char;
@@ -30,7 +42,7 @@ void			apply_quoting(t_tokenizer_state *state)
 		state->double_quote_end = find_double_quote_end(state);
 }
 
-bool			is_quoted(t_tokenizer_state *state)
+bool				is_quoted(t_tokenizer_state *state)
 {
 	if (state->last_backslash != NULL
 		&& (state->current_char == state->last_backslash
@@ -43,7 +55,7 @@ bool			is_quoted(t_tokenizer_state *state)
 	return (false);
 }
 
-bool			is_quote(char c)
+bool				is_quote(char c)
 {
 	if (c == '\'' || c == '"' || c == '\\')
 		return (true);

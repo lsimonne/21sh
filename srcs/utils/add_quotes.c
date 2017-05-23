@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "utils.h"
 #include "abstract_list.h"
 #include "read_input/editor/editor.h"
@@ -52,50 +64,4 @@ void			quote_word(char **word)
 	ft_strdel(word);
 	*word = ft_strjoin(tmp, "\'");
 	ft_strdel(&tmp);
-}
-
-static void		add_quote_at_pos(t_string **l_str, size_t pos)
-{
-	t_string	*new;
-
-	new = memalloc_or_die(sizeof(t_string));
-	new->c = '\'';
-	new->next = NULL;
-	list_push_at_pos(pos, (t_abstract_list **)l_str, (t_abstract_list *)new);
-}
-
-/*
-** quotes each word delimited by space, tab or \n
-*/
-
-void			quote_per_word(char **str)
-{
-	t_string	*l_str;
-	t_string	*beg;
-	int			pos;
-
-	pos = 0;
-	quote_word(str);
-	l_str = str_to_list(*str);
-	beg = l_str;
-	while (l_str)
-	{
-		if (is_posix_blank(l_str->c) || l_str->c == '\n')
-		{
-			add_quote_at_pos(&beg, pos);
-			pos++;
-			while (is_posix_blank(l_str->c) || l_str->c == '\n')
-			{
-				l_str = l_str->next;
-				pos++;
-			}
-			add_quote_at_pos(&beg, pos);
-			pos++;
-		}
-		l_str = l_str->next;
-		pos++;
-	}
-	ft_strdel(str);
-	*str = get_string_from_list(beg);
-	free_string(beg);
 }

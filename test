@@ -20,7 +20,7 @@ $testSignal = TRUE;
 //////////////////////////
 
 $filetest			= "./testraw";
-$shellexec1			= "42sh";
+$shellexec1			= "21sh";
 $shellexec2			= "sh";
 // $TG					= "1>&- 2>&-";
 $commentChar		= '#';

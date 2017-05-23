@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "shell_env.h"
 #include "errors.h"
@@ -87,7 +99,7 @@ static bool	pqx_mods(char modifier, char **str, bool *should_run, bool *quote)
 {
 	if (modifier == 'p')
 	{
-		*should_run = 0; // il manque pas une etoile ici ! /////////////////////////////////
+		*should_run = 0;
 		return (true);
 	}
 	else if (modifier == 'q')

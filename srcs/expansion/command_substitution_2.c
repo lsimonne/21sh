@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "expansion.h"
 #include "break_input/substitution.h"
 #include <stdlib.h>
@@ -11,8 +23,9 @@
 #include "shell_env.h"
 #include "abstract_list.h"
 #include "break_input/quoting.h"
+#include "read_input/command_substitution.h"
 
-void	add_passive_string(t_strlist **strlist_addr, char const *start,
+void			add_passive_string(t_strlist **strlist_addr, char const *start,
 			char const *end)
 {
 	char	*tmp;
@@ -22,7 +35,7 @@ void	add_passive_string(t_strlist **strlist_addr, char const *start,
 	free(tmp);
 }
 
-char	*fd_to_str(int fd)
+char			*fd_to_str(int fd)
 {
 	size_t const	bufsz = 4096;
 	char			buffer[bufsz];
@@ -41,11 +54,34 @@ char	*fd_to_str(int fd)
 	return (result);
 }
 
-void	rm_trailing_newlines(char *str)
+void			rm_trailing_newlines(char *str)
 {
 	size_t	len;
 
 	len = ft_strlen(str);
 	while (len-- > 0 && str[len] == '\n')
 		str[len] = '\0';
+}
+
+t_strlist		*split_subsitutions(char const *word)
+{
+	char const	*passv_str_start;
+	t_strlist	*result;
+	char		quoted;
+
+	passv_str_start = NULL;
+	result = NULL;
+	quoted = 0;
+	return (split_subsitutions_run(word, passv_str_start, result, quoted));
+}
+
+char			*command_substition(char const *word)
+{
+	t_strlist	*strlist;
+	char		*result;
+
+	strlist = split_subsitutions(word);
+	result = strlist_to_str(strlist);
+	strlist_delete(&strlist);
+	return (result);
 }

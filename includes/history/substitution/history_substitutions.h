@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HISTORY_SUBSTITUTIONS_H
 # define HISTORY_SUBSTITUTIONS_H
 
@@ -5,8 +17,7 @@
 # include "break_input/token.h"
 # include "history/history_def.h"
 # include "range.h"
-
-#include "break_input/tokenizer_state.h"
+# include "break_input/tokenizer_state.h"
 
 /*
 **			history_substitutions.c
@@ -14,7 +25,6 @@
 
 int		start_substitution(char **str, t_uint *start, char *hist_entry);
 int		history_substitution(char **str);
-
 
 /*
 **			get_history_entry.c
@@ -42,7 +52,7 @@ void	get_entry_word(char **entry, char *str, t_uint *end);
 **			bang_sharp.c
 */
 
-void			bang_sharp(char **str, t_uint *i, int *should_run);
+void	bang_sharp(char **str, t_uint *i, int *should_run);
 
 /*
 **			word_range.c
@@ -64,9 +74,8 @@ char	*parse_word_designators(char *str, int *i, t_range *range, \
 **			history_tokenizer.c + history_tokenizer_quotes.c
 */
 
-void		add_token_quote(t_tokenizer_state state, t_token *result);
+void	add_token_quote(t_tokenizer_state state, t_token *result);
 t_token	*tokenize_for_substitution(char const *input);
-
 
 /*
 **			history_modifiers.c

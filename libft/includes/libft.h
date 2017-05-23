@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pilespin <pilespin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/04 12:28:51 by pilespin          #+#    #+#             */
-/*   Updated: 2016/02/21 00:15:55 by pilespin         ###   ########.fr       */
+/*   Created: 2014/11/04 12:28:51 by lsimonne          #+#    #+#             */
+/*   Updated: 2016/02/21 00:15:55 by lsimonne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,6 @@
 # include <sys/time.h>
 
 # define BUFF_SIZE 4095
-
-
-//42SH
-
-void		*memalloc_or_die(size_t size);
-
-//42SH
 
 void		ft_putchar(char c);
 void		ft_putcharc(int color, int background, char str);
@@ -53,6 +46,7 @@ void		ft_puttabint(int **tab);
 void		ft_sorttab(char **tab);
 void		ft_swap_char(char **tab, int i, int j);
 void		*ft_memalloc(size_t size);
+void		*memalloc_or_die(size_t size);
 void		ft_memdel(void **ap);
 void		ft_strdel(char **as);
 void		*ft_memcpy(void *dst, const void *src, size_t n);

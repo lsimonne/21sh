@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <sys/wait.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -22,7 +34,8 @@ static void	handle_wait_status(int wstatus)
 	{
 		estatus = WTERMSIG(wstatus);
 		if (estatus != SIGINT)
-			ft_dprintf(STDERR_FILENO, "%s: error signal -%d --%s\n", SHNAME, wstatus, get_signal_error(wstatus)); //test
+			ft_dprintf(STDERR_FILENO, "%s: error signal -%d --%s\n", \
+				SHNAME, wstatus, get_signal_error(wstatus));
 		set_last_exit_status(estatus + 128);
 	}
 }

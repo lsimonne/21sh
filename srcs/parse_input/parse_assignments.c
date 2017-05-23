@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "parse_syntax_tree.h"
 #include "abstract_list.h"
 #include "utils.h"
@@ -66,7 +78,6 @@ t_variable				*parse_assignments(t_token const *tokens\
 		*next_addr = create_assignment(tokens);
 		if (*next_addr == NULL)
 		{
-			// if a word is not an assignment then we're done parsing assignments
 			*remains = copy_all_tokens(tokens);
 			break ;
 		}

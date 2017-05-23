@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "syntax_tree.h"
 #include "print_syntax_tree.h"
 #include "utils.h"
 #include <libft.h>
 
-static void print_ao_sep(t_ao_type sep_type, size_t lvl)
+static void	print_ao_sep(t_ao_type sep_type, size_t lvl)
 {
 	if (sep_type == AO_END)
 		return ;
@@ -41,7 +53,7 @@ static void	print_and_or_list(t_and_or_list const *ao_list, size_t lvl)
 	}
 }
 
-void	print_command_list(t_command_list const *cmd_list, size_t lvl)
+void		print_command_list(t_command_list const *cmd_list, size_t lvl)
 {
 	if (cmd_list == NULL)
 	{

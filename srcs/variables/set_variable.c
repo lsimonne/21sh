@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <libft.h>
 #include "shell_env.h"
 
@@ -28,7 +40,8 @@ void			set_assignments(t_variable *assignments, bool export)
 {
 	while (assignments)
 	{
-		setenv_as(&get_shell_env()->variables, assignments->name, assignments->value, export);
+		setenv_as(&get_shell_env()->variables, \
+			assignments->name, assignments->value, export);
 		assignments = assignments->next;
 	}
 }

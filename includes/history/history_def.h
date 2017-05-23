@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HISTORY_DEF_H
 # define HISTORY_DEF_H
-
-# define HISTFILE ".42sh_history"
 
 typedef struct				s_str_subst
 {
@@ -32,6 +42,7 @@ typedef struct				s_sh_history
 	t_file_position			*files;
 	t_str_subst				last_subst;
 	char					*last_search;
+	char					*histfile;
 }							t_sh_history;
 
 #endif

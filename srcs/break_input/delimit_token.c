@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "tokenizer.h"
 #include "utils.h"
 #include <libft.h>
@@ -19,10 +31,6 @@ void			delimit_token(t_tokenizer_state *state)
 	if (*str != '\0')
 	{
 		token = construct_token(str, *state->current_char);
-#ifdef TOKENIZER_DEBUG
-		ft_putstr("DELIMITED: ");
-		print_token(token);
-#endif
 		list_push_back((t_abstract_list**)&state->result
 			, (t_abstract_list*)token);
 	}

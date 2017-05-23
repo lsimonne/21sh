@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "shell_env.h"
 #include "parse_syntax_tree.h"
 #include "print_syntax_tree.h"
@@ -18,9 +30,4 @@ void			parse_input(void)
 		print_name_and_error(get_error());
 	}
 	delete_all_tokens(&sh_env->tokens);
-#ifdef FTSH_DEBUG
-	ft_putendl("<syntax_tree>");
-	print_command_list(sh_env->syntax_tree, 0);
-	ft_putendl("</syntax_tree>");
-#endif
 }

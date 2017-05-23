@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup_whitout_space.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pilespin <pilespin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/02 18:49:45 by pilespin          #+#    #+#             */
-/*   Updated: 2015/10/26 16:54:33 by pilespin         ###   ########.fr       */
+/*   Created: 2015/07/02 18:49:45 by lsimonne          #+#    #+#             */
+/*   Updated: 2015/10/26 16:54:33 by lsimonne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

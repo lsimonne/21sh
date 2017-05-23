@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "abstract_list.h"
 
 void	list_push_back(t_abstract_list **list, t_abstract_list *new)
@@ -59,7 +71,6 @@ void	**list_pop_at_pos(size_t pos, t_abstract_list **list)
 		if (i == pos)
 		{
 			*addr = lst->next;
-			// free(lst);
 			return ((void**)lst);
 		}
 		addr = &(*addr)->next;

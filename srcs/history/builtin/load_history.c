@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/04 15:35:21 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/04 15:35:21 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "history.h"
 #include "abstract_list.h"
 #include "utils.h"
@@ -58,7 +70,7 @@ void		load_history(t_shell_env *shell_env, char *filename, bool n_opt)
 	i = 0;
 	position = 0;
 	if (!filename)
-		filename = HISTFILE;
+		filename = get_shell_env()->history.histfile;
 	if ((fd = open(filename, O_RDONLY)) >= 0)
 	{
 		if (n_opt)
