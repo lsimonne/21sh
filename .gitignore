@@ -31,7 +31,7 @@
 # Debug files
 *.dSYM/
 
-42sh
+21sh
 **/.DS_Store
 debug
 errlog
