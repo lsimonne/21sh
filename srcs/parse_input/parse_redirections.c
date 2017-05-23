@@ -32,6 +32,19 @@ static t_redirection	*free_result(t_redirection *result)
 	return (NULL);
 }
 
+static bool				no_redir(t_token const *tokens, t_redirection **result)
+{
+	if (tokens == NULL || (tokens->type->id != (t_token_id)REDIR_OUTPUT
+					&& tokens->type->id != (t_token_id)REDIR_INPUT
+					&& tokens->type->id != (t_token_id)APPEND_OUTPUT
+					&& tokens->type->id != (t_token_id)REDIR_INPUT_HEREDOC))
+	{
+		free(*result);
+		return (1);
+	}
+	return (0);
+}
+
 static t_redirection	*create_redirection(t_token const *tokens, \
 											t_token const **end)
 {
@@ -47,15 +60,8 @@ static t_redirection	*create_redirection(t_token const *tokens, \
 	}
 	else
 		result->n = -1;
-	if (tokens == NULL || (tokens->type->id != (t_token_id)REDIR_OUTPUT
-					&& tokens->type->id != (t_token_id)REDIR_INPUT
-					&& tokens->type->id != (t_token_id)APPEND_OUTPUT
-					&& tokens->type->id != (t_token_id)REDIR_INPUT_HEREDOC))
-	{
-		free(result);
+	if (no_redir(tokens, &result))
 		return (NULL);
-	}
-
 	if (result->n == -1)
 		result->n = get_default_fd((t_redir_type)tokens->type->id);
 	result->type = (t_redir_type)tokens->type->id;

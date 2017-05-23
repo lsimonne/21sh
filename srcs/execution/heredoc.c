@@ -10,7 +10,7 @@
 ** wait the fork
 */
 
-int	prompt_redirection_init(char *eof)
+int		prompt_redirection_init(char *eof)
 {
 	char	*txt;
 	int		*pipefd;
@@ -42,7 +42,7 @@ char	*prompt_heredoc(char *eof)
 {
 	char	*txt;
 	char	*cmd;
-	int	i;
+	int		i;
 
 	i = 0;
 	txt = ft_strnew(0);
@@ -74,7 +74,7 @@ char	*prompt_heredoc(char *eof)
 int		here_edition(char **cmd)
 {
 	int		ret;
-	char		*key;
+	char	*key;
 
 	key = ft_strnew(4);
 	while ((ret = read(0, key, 1)) > 0)
