@@ -37,7 +37,7 @@ void				overwrite_fd(int src, int overwrited)
 	}
 }
 
-static void				pipe_me_in_2(t_pipeline_state *state, pid_t fork_ret)
+static void			pipe_me_in_2(t_pipeline_state *state, pid_t fork_ret)
 {
 	if (fork_ret == FORKED_IN_CHILD)
 	{
@@ -67,7 +67,7 @@ int					pipe_me_in(t_pipeline_state *state)
 	}
 	if (state->next_pipe != NULL)
 	{
-		ft_putendl_fd("42sh: state->next_pipe set while entering pipe_me_in", 2);
+		ft_putendl_fd("42sh: state->next_pipe in pipe_me_in", 2);
 		exit(EXIT_FAILURE);
 	}
 	if (!state->last_cmd)

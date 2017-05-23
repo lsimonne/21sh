@@ -19,7 +19,7 @@
 t_builtin_usage const	*get_builtin_usages(void)
 {
 	static t_builtin_usage const usages[BUILTIN_DEF_COUNT] =
-	{{ HISTORY_BUID, "history [-c] [-d offset] [n] or history -awrn [filename] or history -ps arg [arg…]"}
+	{{ HISTORY_BUID, "history [-cd n], history -awrn [file], history -ps arg"}
 	};
 
 	return (usages);

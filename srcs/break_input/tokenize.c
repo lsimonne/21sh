@@ -37,11 +37,6 @@ t_token			*tokenize(char const *input)
 				return (NULL);
 			}
 		}
-		// rule 1
-#ifdef TOKENIZER_DEBUG
-		print_tokenizer_state(&state);
-		ft_putstr("rule 1 aka I'M DONE MOTHERF***ERZ\n");
-#endif
 		delimit_token(&state);
 		result = state.result;
 		free(state.input);

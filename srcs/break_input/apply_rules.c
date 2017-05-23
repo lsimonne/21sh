@@ -45,7 +45,6 @@ void			apply_rules(t_tokenizer_state *state)
 	char c;
 
 	c = *state->current_char;
-	print_tokenizer_state(state);
 	if (state->op_start != NULL && !is_quoted(state)
 		&& is_operator_part(state))
 	{
@@ -68,10 +67,8 @@ void			apply_rules(t_tokenizer_state *state)
 
 bool			apply_rules_2(t_tokenizer_state *state)
 {
-	// rule 5 (incomplete !! recursion not handled) // not quoted if double quotes?
 	if (!is_quoted(state) && is_substitution_start(state->current_char))
 	{
-		// Weird, not referenced but necessary (or illogism)
 		if (state->word_start == NULL)
 			state->word_start = state->current_char;
 		state->current_char =

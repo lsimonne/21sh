@@ -19,18 +19,18 @@
 # define STATUS_SUCCESS 0
 # define STATUS_FAILURE -1
 # define BUILTIN_RET int
-# define BUILTIN_ARGS int argc, char **argv
+# define BUILTIN_ARGS argc, char **argv int argc, char **argv
 
-typedef BUILTIN_RET	(*t_builtin)(int argc, char **argv);
+typedef int	(*t_builtin)(int argc, char **argv);
 
-BUILTIN_RET	builtin_cd(int argc, char **argv);
-BUILTIN_RET	builtin_setenv(int argc, char **argv);
-BUILTIN_RET	builtin_unsetenv(int argc, char **argv);
-BUILTIN_RET	builtin_set(int argc, char **argv);
-BUILTIN_RET	builtin_export(int argc, char **argv);
-BUILTIN_RET	builtin_unset(int argc, char **argv);
-BUILTIN_RET	builtin_exit(int argc, char **argv);
-BUILTIN_RET	builtin_history(int argc, char **argv);
+int	builtin_cd(int argc, char **argv);
+int	builtin_setenv(int argc, char **argv);
+int	builtin_unsetenv(int argc, char **argv);
+int	builtin_set(int argc, char **argv);
+int	builtin_export(int argc, char **argv);
+int	builtin_unset(int argc, char **argv);
+int	builtin_exit(int argc, char **argv);
+int	builtin_history(int argc, char **argv);
 
 /*
 **	SUB BUILTIN

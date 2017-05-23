@@ -27,8 +27,6 @@ char const	*find_substitution_end(char const *str)
 	set_error(NO_ERROR);
 	while (*str)
 	{
-		/* <backslash> shall retain its literal meaning, except when
-			followed by: '$', '`', or <backslash> */
 		if (*str == '\\' && (*(str + 1) == '`' || *(str + 1) == '\\'))
 			str++;
 		else if (*str == '`')
