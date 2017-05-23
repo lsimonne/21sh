@@ -21,7 +21,7 @@ static int				get_default_fd(t_redir_type type)
 {
 	if (type == REDIR_OUTPUT || type == APPEND_OUTPUT)
 		return (1);
-	else if (type == REDIR_INPUT)
+	else if (type == REDIR_INPUT || type == REDIR_INPUT_HEREDOC)
 		return (0);
 	return (-1);
 }
@@ -49,8 +49,13 @@ static t_redirection	*create_redirection(t_token const *tokens, \
 		result->n = -1;
 	if (tokens == NULL || (tokens->type->id != (t_token_id)REDIR_OUTPUT
 					&& tokens->type->id != (t_token_id)REDIR_INPUT
-					&& tokens->type->id != (t_token_id)APPEND_OUTPUT))
-		return (free_result(result));
+					&& tokens->type->id != (t_token_id)APPEND_OUTPUT
+					&& tokens->type->id != (t_token_id)REDIR_INPUT_HEREDOC))
+	{
+		free(result);
+		return (NULL);
+	}
+
 	if (result->n == -1)
 		result->n = get_default_fd((t_redir_type)tokens->type->id);
 	result->type = (t_redir_type)tokens->type->id;
