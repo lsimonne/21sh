@@ -36,7 +36,6 @@ char			*tilde_expansion(char const *word)
 			quote_word(&result);
 		}
 		else
-			// HOME not set error? ("If HOME is unset, the results are unspecified")
 			result = ft_strdup(word);
 	}
 	else

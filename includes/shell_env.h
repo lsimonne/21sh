@@ -22,7 +22,7 @@
 # include "errors.h"
 # include "history/history_def.h"
 
-# define SHNAME "42sh"
+# define SHNAME "21sh"
 
 typedef struct			s_shell_env
 {

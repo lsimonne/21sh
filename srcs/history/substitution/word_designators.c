@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "utils.h"
 #include "range.h"
 
@@ -77,16 +76,17 @@ static void		match_last_search(char **hist_entry, char **result)
 **	'[n]-[m]' a range of words
 */
 
+void			norm_set_range(t_range *range)
+{
+	range->start = 1;
+	range->end = 1;
+}
+
 char			*parse_word_designators(char *str, int *i, t_range *range, \
 										char **entry)
 {
 	char	*result;
 
-	/*
-		!!!!!
-		It is not an error to use ‘*’ if there is just one word in the event;
-		the empty string is returned in that case.
-	*/
 	result = NULL;
 	if (str[*i] == '*')
 	{
@@ -95,10 +95,7 @@ char			*parse_word_designators(char *str, int *i, t_range *range, \
 		range->empty_ok = true;
 	}
 	else if (str[*i] == '^')
-	{
-		range->start = 1;
-		range->end = 1;
-	}
+		norm_set_range(range);
 	else if (str[*i] == '$')
 	{
 		result = get_last_word(*entry);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd_2.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lsimonne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/23 22:01:15 by lsimonne          #+#    #+#             */
+/*   Updated: 2017/05/23 22:01:17 by lsimonne         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "execution/builtins/builtins.h"
 #include "variable.h"
 #include <stdlib.h>
@@ -31,11 +43,13 @@ bool			first_comp_is_dot_or_dotdot(char const *str)
 	}
 }
 
-int				cd_oldpwd(void)
+int				cd_oldpwd(t_cd *cd)
 {
 	int		ret;
 	char	*oldpwd;
 
+	free(cd->directory);
+	free(cd->current_pwd);
 	oldpwd = get_variable("OLDPWD");
 	if (oldpwd == NULL)
 	{

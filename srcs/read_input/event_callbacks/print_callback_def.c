@@ -20,7 +20,7 @@ void	print_event_callback_def(t_event_callback_def const *def)
 	if (def != NULL)
 	{
 		printf("id:%d, name:\"%s\", str:\"", def->id, def->name);
-		print_non_ascii_str(def->str);
+		ft_putendl(def->str);
 		printf("\", callback:%p\n", def->callback);
 	}
 }

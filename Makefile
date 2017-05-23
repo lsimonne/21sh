@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-PROG_NAME	= 42sh
+PROG_NAME	= 21sh
 
 COMPILER	= clang -c
 CFLAGS 		= -Wall -Wextra -Werror -g -I$(INCL_ROOT) -I./libft/includes/

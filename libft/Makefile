@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pilespin <pilespin@student.42.fr>          +#+  +:+       +#+         #
+#    By: lsimonne <lsimonne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/11/09 11:34:04 by pilespin          #+#    #+#              #
-#    Updated: 2016/02/19 19:23:46 by pilespin         ###   ########.fr        #
+#    Created: 2014/11/09 11:34:04 by lsimonne          #+#    #+#              #
+#    Updated: 2016/02/19 19:23:46 by lsimonne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

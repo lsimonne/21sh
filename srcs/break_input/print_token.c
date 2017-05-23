@@ -17,7 +17,7 @@
 void	print_token(t_token const *token)
 {
 	ft_printf("%s: s=", token->type->name);
-	print_non_ascii_str(token->str);
+	ft_printf("%s\n", token->str);
 	ft_putchar('\n');
 }
 

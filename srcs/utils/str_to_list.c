@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "read_input/editor/editor_struct.h" // move
+#include "read_input/editor/editor_struct.h"
 #include "abstract_list.h"
 
 t_string	*str_to_list(char *str)

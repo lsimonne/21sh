@@ -21,26 +21,7 @@
 #include "utils.h"
 #include "execution/builtins/cd.h"
 #include <limits.h>
-
-static char			*parse_options(t_uchar *opt_addr, int argc, char **argv)
-{
-	char	*str;
-
-	(void)argc;
-	*opt_addr = '\0';
-	if (*argv == NULL)
-		return (NULL);
-	argv++;
-	while ((str = *argv) != NULL)
-	{
-		if (str[0] == '-' && (str[1] == 'L' || str[1] == 'P'))
-			*opt_addr = str[1];
-		else
-			return (ft_strdup(str));
-		argv++;
-	}
-	return (NULL);
-}
+#include "execution/builtins/cd.h"
 
 void				save_the_day(char **curpath_addr, char const *directory, \
 							char const *pwd)
@@ -62,115 +43,64 @@ void				save_the_day(char **curpath_addr, char const *directory, \
 	free(str);
 }
 
-static char			*test_cdpath(char const *dir, char const *path)
+static bool			execute_cd(t_cd *cd)
 {
-	char	*result;
-
-	result = NULL;
-	if (!(path == NULL || path[0] == '\0'))
+	if (cd->opt != 'P')
 	{
-		if (last_is_slash(path))
-			result = ft_strdup(path);
-		else
-			result = ft_strjoin(path, "/");
-		result = ft_strjoinf(result, dir, 1);
+		set_curpath_from_pwd(&cd->curpath);
+		strfreeswap(&cd->curpath, canonicalize_path(cd->curpath));
+		if (cd->curpath == NULL)
+		{
+			free(cd->directory);
+			return (0);
+		}
+		cd->new_pwd = ft_strdup(cd->curpath);
+		save_the_day(&cd->curpath, cd->directory, cd->current_pwd);
 	}
-	else
-		result = ft_strjoin("./", dir);
-	if (result != NULL && !is_directory(result))
-		ft_strdel(&result);
-	return (result);
+	return (1);
 }
 
-static char			*find_cdpath(char const *directory)
+static void			set_curpath(t_cd *cd)
 {
-	char	*cdpath;
-	char	**slices;
-	char	*str;
-	size_t	u;
+	if (!first_comp_is_dot_or_dotdot(cd->directory))
+		cd->curpath = find_cdpath(cd->directory);
+	if (cd->curpath == NULL)
+		cd->curpath = ft_strdup(cd->directory);
+}
 
-	cdpath = get_variable("CDPATH");
-	if (cdpath == NULL)
-		cdpath = ft_strdup("");
-	slices = ft_strsplit(cdpath, ':');
-	u = 0;
-	str = NULL;
-	while (u == 0 || slices[u] != NULL)
-	{
-		str = test_cdpath(directory, slices[u]);
-		if (str != NULL)
-			break ;
-		if (u == 0 && slices[u] == NULL)
-			break ;
-		u++;
-	}
-	free(cdpath);
-	ft_freetabchar(slices);
-	return (str);
+static void			end_cd(t_cd *cd, int *ret)
+{
+	free(cd->curpath);
+	free(cd->directory);
+	if (*ret != 0)
+		*ret = 2;
 }
 
 int					builtin_cd(int argc, char **argv)
 {
-	char	*directory;
-	char	*curpath;
-	char	*home;
-	char	*new_pwd;
-	char	*current_pwd;
-	t_uchar	opt;
+	t_cd	cd;
 	int		ret;
 
-	current_pwd = getcwd(NULL, 0);
-	curpath = NULL;
-	directory = parse_options(&opt, argc, argv);
-	if (directory == NULL)
+	cd.current_pwd = getcwd(NULL, 0);
+	cd.curpath = NULL;
+	cd.directory = parse_cd_options(&cd.opt, argc, argv);
+	if (cd.directory == NULL)
 	{
-		home = get_variable("HOME");
-		if (home == NULL || home[0] == '\0')
-		{
-			ft_putendl_fd("42sh: cd: HOME not set", 2);
-			return (EXIT_FAILURE);
-		}
-		else
-			directory = home;
-	}
-	if (ft_strequ(directory, "-"))
-	{
-		free(directory);
-		free(current_pwd);
-		return (cd_oldpwd());
-	}
-	if (directory[0] == '/')
-		curpath = ft_strdup(directory);
-	else
-	{
-		if (!first_comp_is_dot_or_dotdot(directory))
-			curpath = find_cdpath(directory);
-		if (curpath == NULL)
-			curpath = ft_strdup(directory);
-	}
-	if (opt != 'P')
-	{
-		set_curpath_from_pwd(&curpath);
-		strfreeswap(&curpath, canonicalize_path(curpath));
-		if (curpath == NULL)
-		{
-			free(directory);
+		if (set_home_as_dir(&cd))
 			return (EXIT_SUCCESS);
-		}
-		new_pwd = ft_strdup(curpath);
-		save_the_day(&curpath, directory, current_pwd);
 	}
-	ret = chdir(curpath);
-	if (ret == -1)
-		print_errno_error(errno, "cd", curpath);
-	else if (opt != 'P')
-	{
-		set_variable("OLDPWD", current_pwd, true);
-		set_variable("PWD", new_pwd, true);
-	}
-	free(curpath);
-	free(directory);
-	if (ret != 0)
-		ret = 2;
+	if (ft_strequ(cd.directory, "-"))
+		return (cd_oldpwd(&cd));
+	if (cd.directory[0] == '/')
+		cd.curpath = ft_strdup(cd.directory);
+	else
+		set_curpath(&cd);
+	if (!execute_cd(&cd))
+		return (EXIT_SUCCESS);
+	if ((ret = chdir(cd.curpath)) == -1)
+		print_errno_error(errno, "cd", cd.curpath);
+	else if (cd.opt != 'P')
+		set_pwds(cd);
+	end_cd(&cd, &ret);
 	return (ret);
 }
